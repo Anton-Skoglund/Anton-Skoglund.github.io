@@ -6,16 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "vite build && cp dist/index.html dist/404.html && gh-pages -d dist"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "gh-pages": "^6.3.0",
     "svelte": "^5.28.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-static-copy": "^3.0.0"
+  },
+  "dependencies": {
+    "svelte-spa-router": "^4.0.1"
   }
 }
-
-

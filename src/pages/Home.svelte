@@ -7,6 +7,14 @@
   <a href="#/about">About</a>
 </nav>
 <main>
-  <h1>HOME</h1>
-  <SlidingWords test={[["T", "erriable"], ["E", "xhaustive"], ["S", "hit"], ["T", "estimony"]]}></SlidingWords>
+  <SlidingWords test={[["A", "i"], ["N", "etwork"], ["T", "esting"], ["O", "pen source"], ["N", "othing"], ["S", "ecurity"]]}></SlidingWords>
 </main>
+
+
+<style lang="scss">
+  main {
+    width: 100%;
+    display: flex;
+    align-items: start;
+  }
+</style>

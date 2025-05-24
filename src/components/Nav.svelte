@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
+  export let setElRef: (el: HTMLElement) => void;
+  let navDiv: HTMLElement;
 
+  // Call the callback once it's mounted
+  import { onMount } from 'svelte';
+  onMount(() => {
+    if (setElRef && navDiv) setElRef(navDiv);
+  });
 </script>
 
-<div>
-    <a href="#/">Home</a>
-    <a href="#/cv">CV</a>
+<div bind:this={navDiv}>
+  <a href="#/">Home</a>
+  <a href="#/cv">CV</a>
 </div>
 
 

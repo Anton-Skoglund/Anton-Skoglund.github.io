@@ -1,19 +1,22 @@
 
 <script>
+    import Nav from "../components/Nav.svelte";
   import SlidingWords from "../components/SlidingWords.svelte";
 </script>
-<nav>
-  <a href="#/">Home</a>
-  <a href="#/about">About</a>
-</nav>
+<Nav></Nav>
 <main>
   <SlidingWords test={[["A", "i"], ["N", "etwork"], ["T", "esting"], ["O", "pen source"], ["N", "othing"], ["S", "ecurity"]]}></SlidingWords>
 </main>
 
 
 <style lang="scss">
-  main {
+  body {
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
     display: flex;
     align-items: start;
   }

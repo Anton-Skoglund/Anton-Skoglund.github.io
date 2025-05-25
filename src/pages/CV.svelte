@@ -10,8 +10,11 @@
 
     import Nav from "../components/Nav.svelte";
     import CardInfo from "../components/ExperienceCardContent.svelte";
-    import { linear } from "svelte/easing";
+    import Boids from "./Boids.svelte";
 
+    import Blob from "../components/blob.svelte";
+
+    
     let navElement: HTMLElement | null = null;
 
     function setNavRef(el: HTMLElement) {
@@ -171,9 +174,11 @@
     });
 </script>
 
+
+
 <main bind:this={mainEl}>
     <Nav setElRef={setNavRef} />
-
+    
     <div class="cv">
         <div class="sidebar" style="width: {sidebarWidth}%;">
             <div class="hello">
@@ -208,8 +213,9 @@
                     </div>
                 </div>
             </div>
-
-
+        <div class="boids">
+            <Boids/>
+        </div>
         </div>
 
         <div
@@ -388,17 +394,24 @@
             </div>
         </div>
     </div>
+
+    
 </main>
 
 <style lang="scss">
     main {
         height: 100vh;
         margin: 0;
+
     }
+
+
 
     .cv {
         display: flex;
         height: 90%;
+
+
 
         .experience-card {
             display: flex;
@@ -435,6 +448,7 @@
             display: flex;
             flex-direction: column;
             align-items: start;
+            position: relative;
 
             overflow: hidden;
 
@@ -442,10 +456,18 @@
                 text-align: left;
             }
 
-            & > div {
+            & > div:not(.boids) {
                 width: 100%;
                 min-width: 17.5rem;
                 max-width: 20rem;
+            }
+
+            .boids{
+                top:0;
+                position: absolute;
+                left: 20rem;
+                height: 100vh;
+                width: 65%;
             }
 
             .hello {

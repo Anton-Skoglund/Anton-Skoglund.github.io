@@ -5,7 +5,7 @@
 </script>
 <Nav></Nav>
 <main>
-  <SlidingWords test={[["A", "i"], ["N", "etwork"], ["T", "esting"], ["O", "pen source"], ["N", "othing"], ["S", "ecurity"]]}></SlidingWords>
+  <SlidingWords test={[["A", "i", "#/cv"], ["N", "etwork", "#/cv"], ["T", "esting", "#/cv"], ["O", "pen source", "#/cv"], ["N", "othing", "#/boids"], ["S", "ecurity", "#/cv"]]}></SlidingWords>
 </main>
 
 

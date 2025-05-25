@@ -15,7 +15,8 @@
 
 <div class="container">
   {#each test as _, i}
-  <div
+  <a
+    href="/{test[i][2]}"
     role="button"
     tabindex=0
     onmouseenter={() => { isHovered[i] = true; isInit[i] = true }} 
@@ -27,7 +28,7 @@
     style="display: flex; align-items: center;">
     <h1 style="margin-top: 1rem;">{test[i][0]}</h1>
     <h2 style="margin-left: 0">{test[i][1]}</h2>
-  </div>
+  </a>
   {/each}
 </div>
 
@@ -53,8 +54,8 @@
 .container{
   width: 40rem;
   align-items: start;
-    div{
-      
+    a{
+      color: white;
       margin-bottom: -5rem;
       h1{
         font-size: 10rem;

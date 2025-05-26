@@ -1,11 +1,11 @@
 
 <script>
     import Nav from "../components/Nav.svelte";
-  import SlidingWords from "../components/SlidingWords.svelte";
+  import SlidingWords from "../components/Home/SlidingWords.svelte";
 </script>
 <Nav></Nav>
 <main>
-  <SlidingWords test={[["A", "i", "#/cv"], ["N", "etwork", "#/cv"], ["T", "esting", "#/cv"], ["O", "pen source", "#/cv"], ["N", "othing", "#/boids"], ["S", "ecurity", "#/cv"]]}></SlidingWords>
+  <SlidingWords letterInfo={[["A", "i", "#/cv"], ["N", "etwork", "#/cv"], ["T", "esting", "#/cv"], ["O", "pen source", "#/cv"], ["N", "othing", "#/boids"], ["S", "ecurity", "#/cv"]]}></SlidingWords>
 </main>
 
 

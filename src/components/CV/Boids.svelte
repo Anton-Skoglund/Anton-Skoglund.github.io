@@ -2,13 +2,12 @@
     import { onMount } from "svelte";
 
 
-    import Boid from "../components/Boid.svelte";
+    import Boid from "./Boid.svelte";
     let running = true;
 
 
     let boidRefs: Boid[] = [];
-    let boids = Array.from({ length: 105 }, (_, i) => ({ x: 100, y: 100, radius: 10, speed: 1, direction: Math.random() * 2 * Math.PI}));
-    console.log(boids)
+    let boids = Array.from({ length: 50 }, (_, i) => ({ x: 100, y: 100, radius: 10, speed: 1, direction: Math.random() * 2 * Math.PI}));
 
 
     let mainEl: Element;
@@ -46,9 +45,9 @@
 
     function updateDirection(){
 const perceptionRadius = 50;
-const separationDistance = 20;
+const separationDistance = 30;
 
-const separationWeight = 12;
+const separationWeight = 15;
 const cohesionWeight = 1.0;
 const steerStrength = 0.005;
 
@@ -144,7 +143,6 @@ for (let i = 0; i < boids.length; i++) {
         
         updatePosition()
         updateDirection()
-        console.log("test")
 
 
         requestAnimationFrame(loop);

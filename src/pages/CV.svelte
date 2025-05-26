@@ -9,10 +9,8 @@
     } from "svelte-icons/fa";
 
     import Nav from "../components/Nav.svelte";
-    import CardInfo from "../components/ExperienceCardContent.svelte";
-    import Boids from "./Boids.svelte";
-
-    import Blob from "../components/blob.svelte";
+    import CardInfo from "../components/CV/ExperienceCardContent.svelte";
+    import Sidebar from "../components/CV/Sidebar.svelte";
 
     
     let navElement: HTMLElement | null = null;
@@ -43,10 +41,6 @@
 
     let verticalSlideBar = 1;
 
-    function floatsEqual(a: number, b: number, epsilon = 1e-5): boolean {
-        return Math.abs(a - b) < epsilon;
-    }
-
     function handleSideBarStart() {
         isGrabbedSidebarSlider = true;
     }
@@ -66,61 +60,54 @@
     }
 
     function handleMove(event: MouseEvent | TouchEvent) {
-        if (isGrabbedSidebarSlider) {
-            let clientX: number;
+        let client: MouseEvent | Touch
+        
+        if (event instanceof TouchEvent) {
+            client = event.touches[0];
+        } else {
+            client = event;
+        }
+        
+        let clientY: number = client.clientY;
+        let clientX: number = client.clientX;
 
-            if (event instanceof TouchEvent) {
-                clientX = event.touches[0].clientX;
-            } else {
-                clientX = event.clientX;
-            }
+
+        if (isGrabbedSidebarSlider) {
             contentWidth = 100 - ((clientX + 5) / width) * 100;
             sidebarWidth = 99 - contentWidth;
-        } else if (isTopContentSliderGrabbed) {
-            let clientY: number;
-
-            if (event instanceof TouchEvent) {
-                clientY = event.touches[0].clientY;
-            } else {
-                clientY = event.clientY;
+        } 
+        
+        else if (isTopContentSliderGrabbed) {
+            experienceBarTop = (clientY / height) * 100;
+ 
+            if ((experienceBarBottom  < experienceBarTop + 2) && ((clientY / height) * 100 >= experienceBarTop)) {
+                experienceBarBottom = experienceBarTop + 2;
             }
-            if (experienceBarBottom  < experienceBarTop + 2) {
-                if((clientY / height) * 100 < experienceBarTop){
-                    experienceBarTop = (clientY / height) * 100;
-                    experienceCardHeight1 = experienceBarTop - 1;
-                    experienceCardHeight2 = experienceBarBottom - experienceBarTop;
-                }
-            }else{
-                experienceBarTop = (clientY / height) * 100;
-                experienceCardHeight1 = experienceBarTop - 1;
-                experienceCardHeight2 = experienceBarBottom - experienceBarTop;
+            
+            experienceCardHeight1 = experienceBarTop - 1;
+            experienceCardHeight2 = experienceBarBottom - experienceBarTop;
+            experienceCardHeight3 = 100 - experienceBarBottom;
 
-            }
+        } 
+        
+        else if (isBottomContentSliderGrabbed) {
+            experienceBarBottom = (clientY / height) * 100;
 
-        } else if (isBottomContentSliderGrabbed) {
-            let clientY: number;
-
-            if (event instanceof TouchEvent) {
-                clientY = event.touches[0].clientY;
-            } else {
-                clientY = event.clientY;
+            if(experienceBarBottom < 0 && (clientY / height)*100 < experienceBarBottom){
+                experienceBarBottom = 0
             }
 
-            if (experienceBarBottom < experienceBarTop + 2) {
-                if((clientY / height) * 100 > experienceBarBottom){
-                    experienceBarBottom = (clientY / height) * 100;
-                    experienceCardHeight2 = experienceBarBottom - experienceBarTop;
-                    experienceCardHeight3 = 100 - experienceBarBottom;
-
-                }
-            }else{
+            if ((experienceBarBottom < experienceBarTop + 2) && ((clientY / height) * 100 <= experienceBarBottom)) {
                 experienceBarBottom = (clientY / height) * 100;
-                experienceCardHeight2 = experienceBarBottom - experienceBarTop;
-                experienceCardHeight3 = 100 - experienceBarBottom;
+                experienceBarTop = experienceBarBottom - 2;
             }
 
-
-        } else {
+            experienceCardHeight1 = experienceBarTop - 1
+            experienceCardHeight2 = experienceBarBottom - experienceBarTop;
+            experienceCardHeight3 = 100 - experienceBarBottom;
+        } 
+        
+        else {
             isGrabbedSidebarSlider = false;
             isTopContentSliderGrabbed = false;
             isBottomContentSliderGrabbed = false;
@@ -180,43 +167,7 @@
     <Nav setElRef={setNavRef} />
     
     <div class="cv">
-        <div class="sidebar" style="width: {sidebarWidth}%;">
-            <div class="hello">
-                <img src="" alt="" />
-                <h1>Anton Skoglund</h1>
-            </div>
-            <div class="about-me">
-                <h3>About me</h3>
-                <p>I like to code :)</p>
-            </div>
-
-            <div class="contact">
-                <h3>Contact</h3>
-                <div class="contact-list">
-                    <div class="contact-list-item">
-                        <div><FaEnvelope /></div>
-                        <a href="mailto:anton.r.skoglund@gmail.com"
-                            >anton.r.skoglund@gmail.com</a
-                        >
-                    </div>
-                    <div class="contact-list-item">
-                        <div><FaPhone /></div>
-                        <a href="tel:+46737167118"> 073-716 71 18</a>
-                    </div>
-                    <div class="contact-list-item">
-                        <div><FaMapMarkerAlt /></div>
-                        <a
-                            href="https://www.google.com/maps/place/G%C3%B6teborg/@57.7010685,11.7290334,11z/data=!3m1!4b1!4m6!3m5!1s0x464f8e67966c073f:0x4019078290e7c40!8m2!3d57.70887!4d11.97456!16zL20vMDM0M18?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D"
-                            target="_blank"
-                            rel="noopener noreferrer">Göteborg</a
-                        >
-                    </div>
-                </div>
-            </div>
-        <div class="boids">
-            <Boids/>
-        </div>
-        </div>
+        <Sidebar sidebarWidth={sidebarWidth}/>
 
         <div
             class="slider"
@@ -232,8 +183,7 @@
         </div>
 
         <div class="content" style="width: {contentWidth}%;">
-            <div
-                class="experience-card"
+            <div class="experience-card"
                 style="height: {experienceCardHeight1}%;"
             >
                 <h3>Education</h3>
@@ -281,8 +231,7 @@
                 </div>
             </div>
 
-            <div
-                class="experience-card"
+            <div class="experience-card"
                 style="height: {experienceCardHeight2}%;"
             >
                 <h3>Work</h3>
@@ -402,7 +351,6 @@
     main {
         height: 100vh;
         margin: 0;
-
     }
 
 
@@ -410,7 +358,6 @@
     .cv {
         display: flex;
         height: 90%;
-
 
 
         .experience-card {
@@ -444,79 +391,7 @@
             }
         }
 
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            position: relative;
-
-            overflow: hidden;
-
-            h3 {
-                text-align: left;
-            }
-
-            & > div:not(.boids) {
-                width: 100%;
-                min-width: 17.5rem;
-                max-width: 20rem;
-            }
-
-            .boids{
-                top:0;
-                position: absolute;
-                left: 20rem;
-                height: 100vh;
-                width: 65%;
-            }
-
-            .hello {
-                img {
-                    width: 128px;
-                    height: 128px;
-                }
-            }
-
-            .about-me {
-                border-top: solid 1px #fff;
-
-                p {
-                    font-size: 0.75rem;
-                    text-align: left;
-                    margin: 1rem;
-                }
-            }
-
-            .contact {
-                border-top: solid 1px #fff;
-
-                .contact-list {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1rem;
-
-                    margin: 1rem;
-                }
-                .contact-list-item {
-                    display: flex;
-                    text-align: center;
-                    justify-content: start;
-                    gap: 1rem;
-                    line-height: 1rem;
-
-                    & > div {
-                        width: 1rem;
-                        height: 1rem;
-                    }
-                    a {
-                        color: white;
-                    }
-                    a:hover {
-                        font-weight: 700;
-                    }
-                }
-            }
-        }
+        
         .slider {
             display: flex;
             align-items: center;

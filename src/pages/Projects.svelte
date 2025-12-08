@@ -32,30 +32,35 @@
       subTitle: "IKEA x Chalmers University of Technology",
       desc: "A project we made in collaboration with IKEA and Chalmers, where we tried to solve a real world problem using design thinking and user centered design.",
       img: smartpunkt,
+      link: "smartpunkt"
     },
     {
       title: "SIMPLE",
       subTitle: "A clean design system for simple browser extensions",
       desc: "Weather forecast using API",
       img: SIMPLE,
+      link: "simple"
     },
     {
       title: "ChaboStats",
       subTitle: "Help students with their living situation",
       desc: "A help web site for chalmers students living",
       img: ChaboStats,
+      link: "chabostats"
     },
     {
       title: "Simple reminder app",
       subTitle: "Made in a published in a week",
       desc: "A project we made in collaboration with IKEA and Chalmers, where we tried to solve a real world problem using design thinking and user centered design.",
       img: QuickLearn,
+      link: "clingy"
     },
     {
       title: "Clingy",
       subTitle: "A simple game made in C in a week",
       desc: "Weather forecast using API",
       img: Clingy,
+      link: "clingy"
     },
   ];
 
@@ -70,7 +75,7 @@
   <h1>My Projects</h1>
   <div class="grid">
     {#each projects as p}
-      <div class="item">
+      <a href="#/{p.link}" class="item">
         <div class="text">
           <h1>{p.title}</h1>
           <h2>{p.subTitle}</h2>
@@ -78,7 +83,7 @@
         <div class="img-wrapper">
           <img src={p.img} alt={p.desc} />
         </div>
-      </div>
+      </a>
     {/each}
   </div>
 </main>

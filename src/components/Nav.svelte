@@ -20,8 +20,7 @@
 
     display: flex;
     margin: auto;
-        font-family: "PT Serif", serif;
-
+    font-family: "PT Serif", serif;
 
     a {
       margin: 1rem;

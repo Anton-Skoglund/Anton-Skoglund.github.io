@@ -26,20 +26,22 @@
 
     let isGrabbedSidebarSlider = false;
 
-    let contentWidth = 80;
+    let contentWidth = $state(80);
     let slideBar = 1;
-    let sidebarWidth = 100 - contentWidth - slideBar;
+    let sidebarWidth = $state(100 - contentWidth - slideBar);
 
     let isTopContentSliderGrabbed = false;
     let isBottomContentSliderGrabbed = false;
-    let experienceCardHeight1 = 33;
-    let experienceCardHeight2 = 33;
-    let experienceCardHeight3 = 33;
+    let experienceCardHeight1 = $state(33);
+    let experienceCardHeight2 = $state(33);
+    let experienceCardHeight3 = $state(33);
 
     let experienceBarTop = 33;
     let experienceBarBottom = 66;
 
     let verticalSlideBar = 1;
+
+    let isMobile = $state(false); // state?
 
     function handleSideBarStart() {
         isGrabbedSidebarSlider = true;
@@ -112,6 +114,15 @@
             isTopContentSliderGrabbed = false;
             isBottomContentSliderGrabbed = false;
         }
+
+
+        if(isMobile){
+            sidebarWidth = 100;
+            contentWidth = 100
+        }
+
+
+
     }
 
     onMount(() => {
@@ -123,7 +134,10 @@
             const rect = mainEl.getBoundingClientRect();
             width = rect.width;
             height = rect.height;
+
+            isMobile = window.innerWidth < 768;
         };
+
 
         updateSize(); // Initial set
         const resizeObserver = new ResizeObserver(updateSize);
@@ -169,6 +183,7 @@
     <div class="cv">
         <Sidebar sidebarWidth={sidebarWidth}/>
 
+        {#if !isMobile}
         <div
             class="slider"
             style="width: {slideBar}%;"
@@ -181,6 +196,8 @@
                 <FaGripLines />
             </div>
         </div>
+
+        {/if}
 
         <div class="content" style="width: {contentWidth}%;">
             <div class="experience-card"
@@ -219,6 +236,7 @@
                 />
             </div>
 
+        {#if !isMobile}
             <div
                 class="vertical-slider"
                 role="button"
@@ -230,6 +248,7 @@
                     <FaGripLines />
                 </div>
             </div>
+        {/if}
 
             <div class="experience-card"
                 style="height: {experienceCardHeight2}%;"
@@ -282,6 +301,8 @@
                 />
             </div>
 
+        {#if !isMobile}
+
             <div
                 class="vertical-slider"
                 role="button"
@@ -293,6 +314,7 @@
                     <FaGripLines />
                 </div>
             </div>
+        {/if}
 
             <div class="experience-card" style="height: {experienceCardHeight3}%;"
 >               <h3>Skills</h3>
@@ -359,6 +381,14 @@
         display: flex;
         height: 90%;
 
+
+        @media (max-width: 768px) {
+            display: block;
+            h3 {
+                line-height: 0;
+                margin-top: 5rem;
+            }
+        }
 
         .experience-card {
             display: flex;

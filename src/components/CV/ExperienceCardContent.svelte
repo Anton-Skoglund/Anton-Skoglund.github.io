@@ -1,4 +1,7 @@
 <script lang="ts">
+
+    import { onMount } from "svelte";
+
     import { FaCircle } from 'svelte-icons/fa';
 
     type CardInfo = {
@@ -19,8 +22,24 @@
         </div>
       */  
 
-</script>
 
+
+    let isMobile = $state(false);
+
+    onMount(() => {
+        isMobile = window.innerWidth < 0;
+
+        // Optional: Update on resize
+        const handleResize = () => {
+            isMobile = window.innerWidth < 768;
+        };
+
+        handleResize()
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    });
+</script>
 
 <div class="experience-card-content">
     <div class="experience-card-sidebar">
@@ -46,31 +65,53 @@
     .experience-card-content{
         display: flex;
         width: 100%;
+        
+        @media (max-width: 768px) {
+            display: block;
+
+ 
+            h4{
+                margin-bottom: 0;
+            }
+
+            p{
+                padding: 0 1rem;        
+                margin-top: 0;            
+            }
+        }
+
+
 
         & > div{
-            padding: 1rem;                    
+            padding: 0 1rem;     
+                           
         }
         
         .experience-card-sidebar{
-
             width: 20%;
             min-width: 10rem;
+            
+            @media (max-width: 768px) {
+                width: 100%;
+                min-width: 100%;
+
+            }
         }
 
         .experience-card-expanded{
-
             width: 80%;
             min-width: 20rem;
 
             border-left: 1px solid #fff;
-        }
+            
+            @media (max-width: 768px) {
+                width: 100%;
+                min-width: 100%;
 
-        .mark-ball{
-            width: 16px;
-            height: 16px;
-            position: absolute;
-            transform: translateX(-24px) translateY(24px);
-            color: #fff;
+                border-left: none;
+                border-bottom: 1px solid #fff;
+
+            }
         }
     }
 </style>

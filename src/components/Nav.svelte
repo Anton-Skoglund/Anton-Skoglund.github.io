@@ -3,7 +3,7 @@
   let navDiv: HTMLElement;
 
   // Call the callback once it's mounted
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   onMount(() => {
     if (setElRef && navDiv) setElRef(navDiv);
   });
@@ -11,25 +11,26 @@
 
 <div bind:this={navDiv}>
   <a href="#/">Home</a>
-  <a href="#/cv">CV</a>
+  <a href="#/projects">Project</a>
 </div>
 
-
-
 <style>
-    div {
-        width: 100%;
+  div {
+    width: min(100%, 70rem);
 
-        display: flex;
-        
-        a {
-            margin: 1rem;
-            color: #fff;
-            font-size: 2rem;
-        
-            &:hover{
-                color: red;
-            }
-        }        
+    display: flex;
+    margin: auto;
+        font-family: "PT Serif", serif;
+
+
+    a {
+      margin: 1rem;
+      color: #fff;
+      font-size: 2rem;
+
+      &:hover {
+        font-style: italic;
+      }
     }
+  }
 </style>

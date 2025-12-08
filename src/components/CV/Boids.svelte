@@ -104,8 +104,6 @@ for (let i = 0; i < boids.length; i++) {
       boid.direction = (1 - steerStrength) * boid.direction + steerStrength * desiredAngle;
     }
   }
-
-
 }
 
 

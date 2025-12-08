@@ -1,4 +1,7 @@
 <script lang="ts">
+
+    import { onMount } from "svelte";
+
     import {
         FaEnvelope,
         FaPhone,
@@ -10,13 +13,30 @@
 
 
     let { sidebarWidth }: {sidebarWidth: number} = $props() 
+
+
+    let isMobile = $state(false);
+
+    onMount(() => {
+        isMobile = window.innerWidth < 0;
+
+        // Optional: Update on resize
+        const handleResize = () => {
+        isMobile = window.innerWidth < 768;
+        };
+
+        handleResize()
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    });
 </script>
 
 
 
 <div class="sidebar" style="width: {sidebarWidth}%;">
     <div class="hello">
-        <img src="" alt="" />
+        <img src="" alt="Nice pic" />
         <h1>Anton Skoglund</h1>
     </div>
     <div class="about-me">
@@ -47,84 +67,95 @@
             </div>
         </div>
     </div>
+
+    {#if !isMobile}
     <div class="boids">
         <Boids/>
     </div>
+    {/if}
 </div>
 
 
-<style>
+<style lang="scss">
 .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+
+    overflow: hidden;
+
+
+
+    h3 {
+        text-align: left;
+    }
+
+    & > div:not(.boids) {
+        width: 100%;
+        min-width: 17.5rem;
+        max-width: 20rem;
+
+        
+        @media (max-width: 768px) {
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .boids{
+        top:0;
+        position: absolute;
+        left: 20rem;
+        height: 100vh;
+        width: 65%;
+    }
+
+    .hello {
+        img {
+            width: 128px;
+            height: 128px;
+        }
+    }
+
+    .about-me {
+        border-top: solid 1px #fff;
+
+        p {
+            font-size: 0.75rem;
+            text-align: left;
+            margin: 1rem;
+        }
+    }
+
+    .contact {
+        border-top: solid 1px #fff;
+
+        .contact-list {
             display: flex;
             flex-direction: column;
-            align-items: start;
-            position: relative;
+            gap: 1rem;
 
-            overflow: hidden;
+            margin: 1rem;
+        }
+        .contact-list-item {
+            display: flex;
+            text-align: center;
+            justify-content: start;
+            gap: 1rem;
+            line-height: 1rem;
 
-            h3 {
-                text-align: left;
+            & > div {
+                width: 1rem;
+                height: 1rem;
             }
-
-            & > div:not(.boids) {
-                width: 100%;
-                min-width: 17.5rem;
-                max-width: 20rem;
+            a {
+                color: white;
             }
-
-            .boids{
-                top:0;
-                position: absolute;
-                left: 20rem;
-                height: 100vh;
-                width: 65%;
-            }
-
-            .hello {
-                img {
-                    width: 128px;
-                    height: 128px;
-                }
-            }
-
-            .about-me {
-                border-top: solid 1px #fff;
-
-                p {
-                    font-size: 0.75rem;
-                    text-align: left;
-                    margin: 1rem;
-                }
-            }
-
-            .contact {
-                border-top: solid 1px #fff;
-
-                .contact-list {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1rem;
-
-                    margin: 1rem;
-                }
-                .contact-list-item {
-                    display: flex;
-                    text-align: center;
-                    justify-content: start;
-                    gap: 1rem;
-                    line-height: 1rem;
-
-                    & > div {
-                        width: 1rem;
-                        height: 1rem;
-                    }
-                    a {
-                        color: white;
-                    }
-                    a:hover {
-                        font-weight: 700;
-                    }
-                }
+            a:hover {
+                font-weight: 700;
             }
         }
+    }
+}
 </style>

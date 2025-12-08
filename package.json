@@ -23,6 +23,8 @@
     "vite-plugin-static-copy": "^3.0.0"
   },
   "dependencies": {
+    "@motionone/dom": "^10.18.0",
+    "gsap": "^3.13.0",
     "svelte-awesome": "^3.3.5",
     "svelte-icons": "^2.1.0",
     "svelte-spa-router": "^4.0.1"

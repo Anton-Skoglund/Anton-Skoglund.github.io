@@ -74,7 +74,7 @@
   <h1>My Projects</h1>
   <div class="grid">
     {#each projects as p}
-      <a href="#/{p.link}" class="item">
+      <a href="#/projects/{p.link}" class="item">
         <div class="text">
           <h1>{p.title}</h1>
           <h2>{p.subTitle}</h2>

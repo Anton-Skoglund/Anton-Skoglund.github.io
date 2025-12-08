@@ -1,6 +1,6 @@
 
 <script>
-  import githubLogo from '../assets/github.png';
+  import githubLogo from '@assets/github.png';
 </script>
 
 <main>

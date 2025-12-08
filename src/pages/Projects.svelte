@@ -1,14 +1,13 @@
 <script>
   import { onMount } from "svelte";
   import { gsap } from "gsap";
-  import Nav from "../components/Nav.svelte";
+  import Nav from "@components/Nav.svelte";
   import smartpunkt from "../assets/smartpunkt.png";
   import SIMPLE from "../assets/simple.png";
   import ChaboStats from "../assets/chabo-stats.png";
   import QuickLearn from "../assets/quick-learn.png";
   import Clingy from "../assets/clingy.png";
 
-  import Project from "../components/Project.svelte";
 
   onMount(() => {
     const grid = document.querySelector(".grid");

@@ -1,5 +1,4 @@
 import Home from './pages/Home.svelte'
-import CV from './pages/CV.svelte'
 import NotFound from './pages/NotFound.svelte'
 import NoContent from './pages/NoContent.svelte'
 import Projects from './pages/Projects.svelte'
@@ -13,7 +12,6 @@ import ChaboStats from './pages/Projects/ChaboStats.svelte'
 
 export default {
   '/': Home,
-  '/cv': CV,
   '/projects': Projects,
   '/smartpunkt': Smartpunkt,
   '/simple': Simple,

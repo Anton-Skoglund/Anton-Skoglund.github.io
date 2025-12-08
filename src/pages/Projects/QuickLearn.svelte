@@ -1,6 +1,6 @@
 <script>
-    import Nav from "../../components/Nav.svelte";
-    import Clingy from "../../assets/clingy.png"
+    import Nav from "@components/Nav.svelte";
+    import Clingy from "@assets/clingy.png"
 </script>
 
 <div class="page">

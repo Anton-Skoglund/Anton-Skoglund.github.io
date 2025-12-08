@@ -1,6 +1,5 @@
 <script>
-  import Nav from "../components/Nav.svelte";
-  import SlidingWords from "../components/Home/SlidingWords.svelte";
+  import Nav from "@components/Nav.svelte";
 </script>
 
 <Nav></Nav>

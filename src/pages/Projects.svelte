@@ -52,7 +52,7 @@
       subTitle: "Made in a published in a week",
       desc: "A project we made in collaboration with IKEA and Chalmers, where we tried to solve a real world problem using design thinking and user centered design.",
       img: QuickLearn,
-      link: "clingy"
+      link: "quicklearn"
     },
     {
       title: "Clingy",

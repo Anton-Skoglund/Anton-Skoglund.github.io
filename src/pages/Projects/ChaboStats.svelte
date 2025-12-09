@@ -1,12 +1,12 @@
 <script>
     import Nav from "@components/Nav.svelte";
-    import Clingy from "@assets/clingy.png"
+    import ChaboStats from "@assets/chabo-stats.png"
 </script>
 
 <div class="page">
     <Nav></Nav>
     <div class="card">
-        <img class="preview" src={Clingy} alt="Clingy" />
+        <img class="preview" src={ChaboStats} alt="Clingy" />
         <h1>ChaboStats</h1>
         <h2>A</h2>
         <p>Weather forecast using API</p>

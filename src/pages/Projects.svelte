@@ -7,7 +7,8 @@
   import ChaboStats from "../assets/chabo-stats.png";
   import QuickLearn from "../assets/quick-learn.png";
   import Clingy from "../assets/clingy.png";
-
+  import Fishy from "../assets/fishy.png";
+  import Collab from "../assets/collab.png";
 
   onMount(() => {
     const grid = document.querySelector(".grid");
@@ -31,35 +32,46 @@
       subTitle: "IKEA x Chalmers University of Technology",
       desc: "A project we made in collaboration with IKEA and Chalmers, where we tried to solve a real world problem using design thinking and user centered design.",
       img: smartpunkt,
-      link: "smartpunkt"
+      link: "smartpunkt",
     },
     {
       title: "SIMPLE",
       subTitle: "A clean design system for simple browser extensions",
       desc: "Weather forecast using API",
       img: SIMPLE,
-      link: "simple"
+      link: "simple",
     },
     {
       title: "ChaboStats",
       subTitle: "Help students with their living situation",
       desc: "A help web site for chalmers students living",
       img: ChaboStats,
-      link: "chabostats"
+      link: "chabostats",
     },
     {
       title: "Simple reminder app",
       subTitle: "Made in a published in a week",
       desc: "A project we made in collaboration with IKEA and Chalmers, where we tried to solve a real world problem using design thinking and user centered design.",
       img: QuickLearn,
-      link: "quicklearn"
+      link: "quicklearn",
     },
     {
       title: "Clingy",
       subTitle: "A simple game made in C in a week",
-      desc: "Weather forecast using API",
       img: Clingy,
-      link: "clingy"
+      link: "clingy",
+    },
+    {
+      title: "Fishy",
+      subTitle: "Simple boids simulation",
+      img: Fishy,
+      link: "fishy",
+    },
+        {
+      title: "CollabDoc",
+      subTitle: "Document editor",
+      img: Collab,
+      link: "collabdocs",
     },
   ];
 
@@ -108,7 +120,6 @@
     margin-bottom: 2rem;
     font-family: "PT Serif", serif;
   }
-
 
   .grid {
     --track: 1;

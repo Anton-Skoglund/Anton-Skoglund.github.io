@@ -46,34 +46,31 @@
 </main>
 
 <style lang="scss">
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
   main {
-    display: flex;
-    width: min(100%, 70rem);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin: auto;
+
+    width: min(100%, 70rem);
+
     font-family: "PT Serif", serif;
   }
 
   main .title {
-    width: min(100%, 30rem);
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    width: min(100%, 30rem);
   }
 
   main a {
-    color: #efefef;
-    font-size: clamp(2rem, 6vmin, 4rem);
     margin-bottom: 2rem;
     padding: 1rem;
+
+    font-size: clamp(2rem, 6vmin, 4rem);
     border-radius: 1rem;
 
     &:hover {
@@ -82,10 +79,12 @@
   }
 
   .line {
+    margin: 2rem 0;
+
     width: 100%;
     height: 0.1rem;
-    background-color: #fff;
-    margin: 2rem 0;
+
+    background-color: var(--onbg);
   }
 
   .intro {
@@ -94,38 +93,47 @@
   }
 
   h1 {
-    font-size: 14rem;
-    line-height: 0.9;
     margin-top: 1rem;
     margin-bottom: 2rem;
+
+    font-size: 14rem;
+    line-height: 0.9;
   }
   h2 {
-    font-size: 3rem;
     margin: 2rem;
+
+    font-size: 3rem;
   }
   svg {
     width: 100%;
   }
 
+
+
+
   @media (max-width: 1100px) {
     h1 {
-      font-size: 10rem;
       margin-bottom: 1rem;
+
+      font-size: 10rem;
     }
     h2 {
-      font-size: 2rem;
       margin: 1rem;
+
+      font-size: 2rem;
     }
   }
 
   @media (max-width: 768px) {
     h1 {
-      font-size: 6rem;
       margin-bottom: -1rem;
+
+      font-size: 6rem;
     }
     h2 {
-      font-size: 1rem;
       margin: 1rem;
+
+      font-size: 1rem;
     }
   }
 
@@ -134,8 +142,9 @@
       font-size: 4rem;
     }
     h2 {
-      font-size: 1rem;
       margin: 1rem;
+
+      font-size: 1rem;
     }
 
     svg {

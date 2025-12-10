@@ -3,9 +3,9 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { sveltePreprocess } from 'svelte-preprocess';
 import path from 'node:path';
+import { preprocess } from 'svelte/compiler';
 
 export default defineConfig({
-  preprocess: sveltePreprocess(),
   plugins: [
     svelte(),
     viteStaticCopy({

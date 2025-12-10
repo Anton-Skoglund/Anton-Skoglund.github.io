@@ -42,29 +42,31 @@
 
 <style lang="scss">
     main {
-        min-height: 100vh;
-        padding: 2rem;
         display: grid;
         place-items: center;
+
+        min-height: 100vh;
+        padding: 2rem;
     }
 
     .card {
         width: 100%;
         max-width: 650px;
-        border-radius: 1.25rem;
         padding: 1.5rem;
+        
+        border-radius: 1.25rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
         .title {
             h1 {
+                margin-top: 1rem;
                 font-size: 2rem;
                 font-weight: 700;
-                margin-top: 1rem;
             }
 
             h2 {
-                font-size: 1.25rem;
                 margin-bottom: 1rem;
+                font-size: 1.25rem;
             }
         }
 
@@ -79,6 +81,7 @@
 
     .preview {
         width: 100%;
+        
         border-radius: 1rem;
     }
 </style>
